@@ -315,6 +315,7 @@
 				79443B481CEAF8A5003E706A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
