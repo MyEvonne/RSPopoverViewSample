@@ -70,7 +70,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "git@github.com:MyEvonne/RSPopoverViewSample.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://github.com/MyEvonne/RSPopoverViewSample.git", :tag => "1.0.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
