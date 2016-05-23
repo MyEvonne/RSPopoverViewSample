@@ -13,7 +13,6 @@
 		79443B3D1CEAF8A5003E706A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79443B3B1CEAF8A5003E706A /* Main.storyboard */; };
 		79443B3F1CEAF8A5003E706A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79443B3E1CEAF8A5003E706A /* Assets.xcassets */; };
 		79443B421CEAF8A5003E706A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79443B401CEAF8A5003E706A /* LaunchScreen.storyboard */; };
-		79443B4A1CEAF8DC003E706A /* RSPopoverView in Resources */ = {isa = PBXBuildFile; fileRef = 79443B491CEAF8DC003E706A /* RSPopoverView */; };
 		79443B4C1CEB0168003E706A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79443B4B1CEB0168003E706A /* CoreGraphics.framework */; };
 		79443B541CEB021E003E706A /* RSPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 79443B531CEB021E003E706A /* RSPopoverView.m */; };
 /* End PBXBuildFile section */
@@ -29,7 +28,6 @@
 		79443B3E1CEAF8A5003E706A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79443B411CEAF8A5003E706A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79443B431CEAF8A5003E706A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		79443B491CEAF8DC003E706A /* RSPopoverView */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RSPopoverView; path = /Users/richard/Workspace/RSPopoverView/RSPopoverViewSample/RSPopoverViewSample/RSPopoverView; sourceTree = "<absolute>"; };
 		79443B4B1CEB0168003E706A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		79443B521CEB021E003E706A /* RSPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSPopoverView.h; path = RSPopoverView/RSPopoverView.h; sourceTree = "<group>"; };
 		79443B531CEB021E003E706A /* RSPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSPopoverView.m; path = RSPopoverView/RSPopoverView.m; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79443B4A1CEAF8DC003E706A /* RSPopoverView in Resources */,
 				79443B421CEAF8A5003E706A /* LaunchScreen.storyboard in Resources */,
 				79443B3F1CEAF8A5003E706A /* Assets.xcassets in Resources */,
 				79443B3D1CEAF8A5003E706A /* Main.storyboard in Resources */,
