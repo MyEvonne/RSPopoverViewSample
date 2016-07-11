@@ -35,6 +35,14 @@ typedef void(^RSPopoverViewDidSelectRowBlock)(NSUInteger selectedRowIndex);
  */
 @property (strong, nonatomic) NSArray * rowModels;
 /**
+ *  每行文字的颜色。
+ */
+@property (strong, nonatomic) UIColor * textColor;
+/**
+ *  每行文字的字体。
+ */
+@property (strong, nonatomic) UIFont * textFont;
+/**
  *  每行的宽度，指的是中间可点击区域的宽度，背景宽度应该加上edgeInsets的left，right。
  */
 @property (assign, nonatomic) CGFloat rowWidth;
@@ -42,6 +50,10 @@ typedef void(^RSPopoverViewDidSelectRowBlock)(NSUInteger selectedRowIndex);
  *  行高，默认为kRSPopoverViewDefaultRowHeight。
  */
 @property (assign, nonatomic) CGFloat rowHeight;
+/**
+ *  popoverView与所在的view的最小间距。
+ */
+@property (assign, nonatomic) CGFloat popoverViewMinMarginToView;
 /**
  *  内容相对于背景的距离。
  */
