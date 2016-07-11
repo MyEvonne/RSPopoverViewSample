@@ -56,6 +56,9 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
                                            kRSPopoverViewBgLayerViewPaddingToTableView);
         self.rowModels = rowModels;
         self.popoverBackgroundColor = [UIColor colorWithRed:0.29 green:0.32 blue:0.34 alpha:1.00];
+		self.textColor = [UIColor whiteColor];
+		self.textFont = [UIFont systemFontOfSize:15];
+		self.popoverViewMinMarginToView = kRSPopoverViewMarginToView;
     }
     return self;
 }
@@ -93,13 +96,13 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
             height = tableViewHeight + self.edgeInsets.top + self.edgeInsets.bottom + kRSPopoverViewBgLayerArrowHeight;
             yPos = CGRectGetMaxY(self.fromRect) + kRSPopoverViewBgLayerViewArrowMarginToRect;
             arrowXPos = CGRectGetMidX(self.fromRect);
-            if (arrowXPos < (kRSPopoverViewMarginToView + width / 2)) {
+            if (arrowXPos < (self.popoverViewMinMarginToView + width / 2)) {
                 //箭头在左边。
-                xPos = kRSPopoverViewMarginToView;
+                xPos = self.popoverViewMinMarginToView;
             }
-            else if (arrowXPos > (CGRectGetWidth(self.frame) - kRSPopoverViewMarginToView - width / 2)) {
+            else if (arrowXPos > (CGRectGetWidth(self.frame) - self.popoverViewMinMarginToView - width / 2)) {
                 //箭头在右边
-                xPos = CGRectGetWidth(self.frame) - kRSPopoverViewMarginToView - width;
+                xPos = CGRectGetWidth(self.frame) - self.popoverViewMinMarginToView - width;
             }
             else {
                 xPos = arrowXPos - width / 2;
@@ -111,13 +114,13 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
             height = tableViewHeight + self.edgeInsets.top + self.edgeInsets.bottom + kRSPopoverViewBgLayerArrowHeight;
             yPos = CGRectGetMinY(self.fromRect) - kRSPopoverViewBgLayerViewArrowMarginToRect - height;
             arrowXPos = CGRectGetMidX(self.fromRect);
-            if (arrowXPos < (kRSPopoverViewMarginToView + width / 2)) {
+            if (arrowXPos < (self.popoverViewMinMarginToView + width / 2)) {
                 //箭头在左边。
-                xPos = kRSPopoverViewMarginToView;
+                xPos = self.popoverViewMinMarginToView;
             }
-            else if (arrowXPos > (CGRectGetWidth(self.frame) - kRSPopoverViewMarginToView - width / 2)) {
+            else if (arrowXPos > (CGRectGetWidth(self.frame) - self.popoverViewMinMarginToView - width / 2)) {
                 //箭头在右边
-                xPos = CGRectGetWidth(self.frame) - kRSPopoverViewMarginToView - width;
+                xPos = CGRectGetWidth(self.frame) - self.popoverViewMinMarginToView - width;
             }
             else {
                 xPos = arrowXPos - width / 2;
@@ -129,13 +132,13 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
             height = tableViewHeight + self.edgeInsets.top + self.edgeInsets.bottom;
             xPos = CGRectGetMaxX(self.fromRect) + kRSPopoverViewBgLayerViewArrowMarginToRect;
             arrowYPos = CGRectGetMidY(self.fromRect);
-            if (arrowYPos < (kRSPopoverViewMarginToView + height / 2)) {
+            if (arrowYPos < (self.popoverViewMinMarginToView + height / 2)) {
                 //箭头在上边。
-                yPos = kRSPopoverViewMarginToView;
+                yPos = self.popoverViewMinMarginToView;
             }
-            else if (arrowYPos > (CGRectGetHeight(self.frame) - kRSPopoverViewMarginToView - height / 2)) {
+            else if (arrowYPos > (CGRectGetHeight(self.frame) - self.popoverViewMinMarginToView - height / 2)) {
                 //箭头在下边
-                yPos = CGRectGetHeight(self.frame) - kRSPopoverViewMarginToView - height;
+                yPos = CGRectGetHeight(self.frame) - self.popoverViewMinMarginToView - height;
             }
             else {
                 yPos = arrowYPos - height / 2;
@@ -147,13 +150,13 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
             height = tableViewHeight + self.edgeInsets.top + self.edgeInsets.bottom;
             xPos = CGRectGetMinX(self.fromRect) - kRSPopoverViewBgLayerViewArrowMarginToRect - width;
             arrowYPos = CGRectGetMidY(self.fromRect);
-            if (arrowYPos < (kRSPopoverViewMarginToView + height / 2)) {
+            if (arrowYPos < (self.popoverViewMinMarginToView + height / 2)) {
                 //箭头在上边。
-                yPos = kRSPopoverViewMarginToView;
+                yPos = self.popoverViewMinMarginToView;
             }
-            else if (arrowYPos > (CGRectGetHeight(self.frame) - kRSPopoverViewMarginToView - height / 2)) {
+            else if (arrowYPos > (CGRectGetHeight(self.frame) - self.popoverViewMinMarginToView - height / 2)) {
                 //箭头在下边
-                yPos = CGRectGetHeight(self.frame) - kRSPopoverViewMarginToView - height;
+                yPos = CGRectGetHeight(self.frame) - self.popoverViewMinMarginToView - height;
             }
             else {
                 yPos = arrowYPos - height / 2;
@@ -294,9 +297,49 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
 #pragma mark - Setters
 - (void)setRowModels:(NSArray *)rowModels {
     _rowModels = rowModels;
-    
+	[self.contentTableView reloadData];
 }
-                                    
+
+- (void)setTextColor:(UIColor *)textColor {
+	_textColor = textColor;
+	[self.contentTableView reloadData];
+}
+
+- (void)setTextFont:(UIFont *)textFont {
+	_textFont = textFont;
+	[self.contentTableView reloadData];
+}
+
+- (void)setRowWidth:(CGFloat)rowWidth {
+	_rowWidth = rowWidth;
+	[self layoutIfNeeded];
+}
+
+- (void)setRowHeight:(CGFloat)rowHeight {
+	_rowHeight = rowHeight;
+	[self layoutIfNeeded];
+}
+
+- (void)setEdgeInsets:(UIEdgeInsets)edgeInsets {
+	_edgeInsets = edgeInsets;
+	[self layoutIfNeeded];
+}
+
+- (void)setPopoverViewMinMarginToView:(CGFloat)popoverViewMinMarginToView {
+	_popoverViewMinMarginToView = popoverViewMinMarginToView;
+	[self layoutIfNeeded];
+}
+
+- (void)setCornerRadius:(CGFloat)cornerRadius {
+	_cornerRadius = cornerRadius;
+	[self layoutIfNeeded];
+}
+
+- (void)setPopoverBackgroundColor:(UIColor *)popoverBackgroundColor {
+	_popoverBackgroundColor = popoverBackgroundColor;
+	[self layoutIfNeeded];
+}
+
 #pragma mark - Actions
 - (void)onBgViewTapped:(UITapGestureRecognizer *)tapGestureRecognizer {
     [self dismissPopoverAnimated:YES];
@@ -340,10 +383,9 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         cell.backgroundColor = [UIColor clearColor];
-        cell.textLabel.textColor = [UIColor whiteColor];
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell.textLabel.textColor = self.textColor;
+        cell.textLabel.font = self.textFont;
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
-//        cell.separatorInset = UIEdgeInsetsMake(0, -10, 0, kRSPopoverViewContentTableViewRightInset);
     }
     if (indexPath.row < self.rowModels.count - 1) {
         NSInteger lineTag = 1000000;
