@@ -101,7 +101,6 @@ static CGFloat const kViewControllerMarginToBounds = 10.f;
     secondRowModel.text = @"22222222222";
     
     RSPopoverView * popoverView = [[RSPopoverView alloc] initWithRowModels:@[firstRowModel, secondRowModel]];
-	popoverView.popoverViewMinMarginToView = 10;
     if (button == self.leftTopButton) {
         [popoverView presentPopoverFromRect:button.frame inView:self.view permittedArrowDirections:RSPopoverViewArrowDirectionLeft animated:YES];
     }
