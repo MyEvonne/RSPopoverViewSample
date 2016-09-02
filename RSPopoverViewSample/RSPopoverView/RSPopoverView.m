@@ -340,6 +340,11 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
 	[self layoutIfNeeded];
 }
 
+- (void)setSeparatorStyle:(UITableViewCellSeparatorStyle)separatorStyle {
+	self.contentTableView.separatorStyle = separatorStyle;
+	[self layoutIfNeeded];
+}
+
 #pragma mark - Actions
 - (void)onBgViewTapped:(UITapGestureRecognizer *)tapGestureRecognizer {
     [self dismissPopoverAnimated:YES];

@@ -66,6 +66,10 @@ typedef void(^RSPopoverViewDidSelectRowBlock)(NSUInteger selectedRowIndex);
  *  弹出菜单的背景颜色。
  */
 @property (strong, nonatomic) UIColor * popoverBackgroundColor;
+/**
+ *  分割线的样式，同UITableViewCellSeparatorStyle。
+ */
+@property (assign, nonatomic) UITableViewCellSeparatorStyle separatorStyle;
 
 @property (copy, nonatomic) RSPopoverViewDidSelectRowBlock didSelectRowBlock;
 
