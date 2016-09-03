@@ -344,11 +344,13 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
 }
 
 - (void)setSeparatorStyle:(UITableViewCellSeparatorStyle)separatorStyle {
+	_separatorStyle = separatorStyle;
 	self.contentTableView.separatorStyle = separatorStyle;
 	[self layoutIfNeeded];
 }
 
 - (void)setSeparatorColor:(UIColor *)separatorColor {
+	self.separatorColor = separatorColor;
 	self.contentTableView.separatorColor = separatorColor;
 	[self layoutIfNeeded];
 }
