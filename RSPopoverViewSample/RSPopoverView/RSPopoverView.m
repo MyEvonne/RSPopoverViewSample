@@ -59,6 +59,7 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
 		self.textColor = [UIColor whiteColor];
 		self.textFont = [UIFont systemFontOfSize:15];
 		self.popoverViewMinMarginToView = kRSPopoverViewMarginToView;
+		self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     }
     return self;
 }
@@ -288,7 +289,7 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
     self.contentTableView.showsHorizontalScrollIndicator = NO;
     self.contentTableView.delegate = self;
     self.contentTableView.dataSource = self;
-    self.contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.contentTableView.separatorStyle = self.separatorStyle;
     self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.contentTableView.frame), 0.5)];
     self.contentTableView.layer.masksToBounds = NO;
     [self.bgView addSubview:self.contentTableView];
