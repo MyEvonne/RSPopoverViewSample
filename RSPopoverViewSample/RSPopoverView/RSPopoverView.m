@@ -350,7 +350,7 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
 }
 
 - (void)setSeparatorColor:(UIColor *)separatorColor {
-	self.separatorColor = separatorColor;
+	_separatorColor = separatorColor;
 	self.contentTableView.separatorColor = separatorColor;
 	[self layoutIfNeeded];
 }
