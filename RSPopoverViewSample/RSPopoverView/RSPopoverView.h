@@ -67,13 +67,17 @@ typedef void(^RSPopoverViewDidSelectRowBlock)(NSUInteger selectedRowIndex);
  */
 @property (strong, nonatomic) UIColor * popoverBackgroundColor;
 /**
- *  分割线的样式，同UITableViewCellSeparatorStyle。
+ *  是否显示分割线。
  */
-@property (assign, nonatomic) UITableViewCellSeparatorStyle separatorStyle;
+@property (assign, nonatomic) BOOL showSeparator;
 /**
  *  分割线的颜色。
  */
 @property (strong, nonatomic) UIColor * separatorColor;
+/**
+ *  分割线缩进。
+ */
+@property (assign, nonatomic) UIEdgeInsets separatorInsets;
 
 @property (copy, nonatomic) RSPopoverViewDidSelectRowBlock didSelectRowBlock;
 
