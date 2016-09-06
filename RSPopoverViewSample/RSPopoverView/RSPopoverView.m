@@ -59,8 +59,9 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
 		self.textColor = [UIColor whiteColor];
 		self.textFont = [UIFont systemFontOfSize:15];
 		self.popoverViewMinMarginToView = kRSPopoverViewMarginToView;
-		self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+		self.showSeparator = YES;
 		self.separatorColor = [UIColor lightGrayColor];
+		self.separatorInsets = UIEdgeInsetsMake(0, kRSPopoverViewContentTableViewLeftInset, 0, kRSPopoverViewContentTableViewRightInset);
     }
     return self;
 }
@@ -290,10 +291,10 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
     self.contentTableView.showsHorizontalScrollIndicator = NO;
     self.contentTableView.delegate = self;
     self.contentTableView.dataSource = self;
-    self.contentTableView.separatorStyle = self.separatorStyle;
+	self.contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	self.contentTableView.separatorColor = self.separatorColor;
-    self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.contentTableView.frame), 0.5)];
-    self.contentTableView.layer.masksToBounds = NO;
+	self.contentTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.contentTableView.frame), 0.5)];
+	self.contentTableView.layer.masksToBounds = NO;
     [self.bgView addSubview:self.contentTableView];
 }
 
@@ -343,16 +344,20 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
 	[self layoutIfNeeded];
 }
 
-- (void)setSeparatorStyle:(UITableViewCellSeparatorStyle)separatorStyle {
-	_separatorStyle = separatorStyle;
-	self.contentTableView.separatorStyle = separatorStyle;
-	[self layoutIfNeeded];
+- (void)setShowSeparator:(BOOL)showSeparator {
+	_showSeparator = showSeparator;
+	[self.contentTableView reloadData];
 }
 
 - (void)setSeparatorColor:(UIColor *)separatorColor {
 	_separatorColor = separatorColor;
 	self.contentTableView.separatorColor = separatorColor;
 	[self layoutIfNeeded];
+}
+
+- (void)setSeparatorInsets:(UIEdgeInsets)separatorInsets {
+	_separatorInsets = separatorInsets;
+	[self.contentTableView reloadData];
 }
 
 #pragma mark - Actions
@@ -401,17 +406,17 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
         cell.textLabel.textColor = self.textColor;
         cell.textLabel.font = self.textFont;
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
-    }
-    if (indexPath.row < self.rowModels.count - 1) {
+	}
+    if (indexPath.row < self.rowModels.count - 1 && self.showSeparator) {
         NSInteger lineTag = 1000000;
         UIView * lineView = [cell viewWithTag:lineTag];
         if (!lineView) {
-            lineView = [[UIView alloc] initWithFrame:CGRectMake(kRSPopoverViewContentTableViewLeftInset,
+            lineView = [[UIView alloc] initWithFrame:CGRectMake(self.separatorInsets.left,
                                                                 kRSPopoverViewDefaultRowHeight - kRSPopoverViewContentTableViewLineViewHeight,
-                                                                CGRectGetWidth(tableView.frame) - kRSPopoverViewContentTableViewLeftInset - kRSPopoverViewContentTableViewRightInset,
+                                                                CGRectGetWidth(tableView.frame) - self.separatorInsets.left - self.separatorInsets.right,
                                                                 kRSPopoverViewContentTableViewLineViewHeight)];
             lineView.tag = lineTag;
-            lineView.backgroundColor = [UIColor whiteColor];
+            lineView.backgroundColor = self.separatorColor;
             [cell.contentView addSubview:lineView];
         }
     }

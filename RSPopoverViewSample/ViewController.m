@@ -29,6 +29,8 @@ static CGFloat const kViewControllerMarginToBounds = 10.f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	self.view.backgroundColor = [UIColor lightGrayColor];
     
     self.leftTopButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
     CGRect frame = self.leftTopButton.frame;
@@ -95,12 +97,16 @@ static CGFloat const kViewControllerMarginToBounds = 10.f;
 
 - (void)onButtonClicked:(UIButton *)button {
     RSPopoverViewRowModel * firstRowModel = [[RSPopoverViewRowModel alloc] init];
+	firstRowModel.iconImage = [self imageWithColor:[UIColor redColor]];
     firstRowModel.text = @"11111111111";
     
     RSPopoverViewRowModel * secondRowModel = [[RSPopoverViewRowModel alloc] init];
+	secondRowModel.iconImage = [self imageWithColor:[UIColor blueColor]];
     secondRowModel.text = @"22222222222";
     
     RSPopoverView * popoverView = [[RSPopoverView alloc] initWithRowModels:@[firstRowModel, secondRowModel]];
+//	popoverView.separatorInsets = UIEdgeInsetsMake(0, 20, 0, 20);
+	popoverView.popoverBackgroundColor = [UIColor whiteColor];
     if (button == self.leftTopButton) {
         [popoverView presentPopoverFromRect:button.frame inView:self.view permittedArrowDirections:RSPopoverViewArrowDirectionLeft animated:YES];
     }
@@ -128,6 +134,17 @@ static CGFloat const kViewControllerMarginToBounds = 10.f;
     else if (button == self.centerButton) {
         [popoverView presentPopoverFromRect:button.frame inView:self.view permittedArrowDirections:RSPopoverViewArrowDirectionUp animated:YES];
     }
+}
+
+- (UIImage *)imageWithColor:(UIColor *) color {
+	CGRect rect = CGRectMake(0.0f,0.0f,30.f,30.f);
+	UIGraphicsBeginImageContext(rect.size);
+	CGContextRef context =UIGraphicsGetCurrentContext();
+	CGContextSetFillColorWithColor(context, [color CGColor]);
+	CGContextFillRect(context, rect);
+	UIImage *theImage =UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return theImage;
 }
 
 @end
