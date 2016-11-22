@@ -43,6 +43,10 @@ typedef void(^RSPopoverViewDidSelectRowBlock)(NSUInteger selectedRowIndex);
  */
 @property (strong, nonatomic) UIFont * textFont;
 /**
+ *  每行文字的对齐方式。
+ */
+@property (assign, nonatomic) NSTextAlignment textAlignment;
+/**
  *  每行的宽度，指的是中间可点击区域的宽度，背景宽度应该加上edgeInsets的left，right。
  */
 @property (assign, nonatomic) CGFloat rowWidth;

@@ -58,6 +58,7 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
         self.popoverBackgroundColor = [UIColor colorWithRed:0.29 green:0.32 blue:0.34 alpha:1.00];
 		self.textColor = [UIColor whiteColor];
 		self.textFont = [UIFont systemFontOfSize:15];
+		self.textAlignment = NSTextAlignmentLeft;
 		self.popoverViewMinMarginToView = kRSPopoverViewMarginToView;
 		self.showSeparator = YES;
 		self.separatorColor = [UIColor lightGrayColor];
@@ -314,6 +315,11 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
 	[self.contentTableView reloadData];
 }
 
+- (void)setTextAlignment:(NSTextAlignment)textAlignment {
+	_textAlignment = textAlignment;
+	[self.contentTableView reloadData];
+}
+
 - (void)setRowWidth:(CGFloat)rowWidth {
 	_rowWidth = rowWidth;
 	[self layoutIfNeeded];
@@ -405,7 +411,7 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = self.textColor;
         cell.textLabel.font = self.textFont;
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.textLabel.textAlignment = self.textAlignment;
 	}
     if (indexPath.row < self.rowModels.count - 1 && self.showSeparator) {
         NSInteger lineTag = 1000000;
