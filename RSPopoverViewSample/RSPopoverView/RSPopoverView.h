@@ -12,6 +12,7 @@
 @interface RSPopoverViewRowModel : NSObject
 @property (strong, nonatomic) UIImage * iconImage;
 @property (copy, nonatomic) NSString * text;
+@property (assign, nonatomic) BOOL enable;
 @end
 
 
@@ -38,6 +39,10 @@ typedef void(^RSPopoverViewDidSelectRowBlock)(NSUInteger selectedRowIndex);
  *  每行文字的颜色。
  */
 @property (strong, nonatomic) UIColor * textColor;
+/**
+ *  每行无法点击时的文字颜色。
+ */
+@property (strong, nonatomic) UIColor * disabledTextColor;
 /**
  *  每行文字的字体。
  */

@@ -8,7 +8,13 @@
 #import "RSPopoverView.h"
 
 @implementation RSPopoverViewRowModel
-
+- (instancetype)init {
+	self = [super init];
+	if (self) {
+		self.enable = YES;
+	}
+	return self;
+}
 @end
 
 CGFloat const kRSPopoverViewMarginToView = 5.f;
@@ -56,7 +62,7 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
                                            kRSPopoverViewBgLayerViewPaddingToTableView);
         self.rowModels = rowModels;
         self.popoverBackgroundColor = [UIColor colorWithRed:0.29 green:0.32 blue:0.34 alpha:1.00];
-		self.textColor = [UIColor whiteColor];
+		self.textColor = [UIColor blackColor];
 		self.textFont = [UIFont systemFontOfSize:15];
 		self.textAlignment = NSTextAlignmentLeft;
 		self.popoverViewMinMarginToView = kRSPopoverViewMarginToView;
@@ -409,7 +415,6 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         cell.backgroundColor = [UIColor clearColor];
-        cell.textLabel.textColor = self.textColor;
         cell.textLabel.font = self.textFont;
         cell.textLabel.textAlignment = self.textAlignment;
 	}
@@ -430,6 +435,15 @@ CGFloat const kRSPopoverViewBgLayerArrowHeight = 7.f;
         cell.imageView.image = rowModel.iconImage;
     }
     cell.textLabel.text = rowModel.text;
+	
+	if (!rowModel.enable) {
+		cell.textLabel.textColor = self.disabledTextColor;
+		cell.userInteractionEnabled = NO;
+	}
+	else {
+		cell.textLabel.textColor = self.textColor;
+		cell.userInteractionEnabled = YES;
+	}
     return cell;
 }
 @end

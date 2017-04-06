@@ -103,10 +103,12 @@ static CGFloat const kViewControllerMarginToBounds = 10.f;
     RSPopoverViewRowModel * secondRowModel = [[RSPopoverViewRowModel alloc] init];
 	secondRowModel.iconImage = [self imageWithColor:[UIColor blueColor]];
     secondRowModel.text = @"22222222222";
+	secondRowModel.enable = NO;
     
     RSPopoverView * popoverView = [[RSPopoverView alloc] initWithRowModels:@[firstRowModel, secondRowModel]];
 //	popoverView.separatorInsets = UIEdgeInsetsMake(0, 20, 0, 20);
 	popoverView.popoverBackgroundColor = [UIColor whiteColor];
+	popoverView.disabledTextColor = [UIColor blueColor];
     if (button == self.leftTopButton) {
         [popoverView presentPopoverFromRect:button.frame inView:self.view permittedArrowDirections:RSPopoverViewArrowDirectionLeft animated:YES];
     }
